@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web Development at SAE</title>
+</head>
+<body>
+    <div id="app">
+        <div id="box"></div>
+        <button v-on:click="addSlide">Slide</button>
+    </div>
+    
+</body>
+<style>
+    #box{
+        border: 1px solid black;
+        width:10%;
+        height:10%;
+    }
+    .blink{
+        animation: flash .1s linear .2s 3 forwards;       
+    }
+    @keyframes flash{
+        0%,40%{
+            background-color: red;
+            transform: translateX(90%);
+        }
+        40%,60%{
+            transform:translateY(15%);
+        }
+        25%,75%{
+            background-color:hsl(0,50,50);
+            transform: translateX(-30%);
+        }
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        },
+        delimiters: ['[[', ']]'],
+        methods: {
+            addSlide: ()=>{
+                let box = document.getElementById('box')
+                box.classList.add('blink')
+                box.classList.add('slide')
+            }
+        },
+        created() {
+            console.log(`Message: ${this.message}`)
+            this.message = this.message+"too"
+        },
+    })
+</script>
+</html>
